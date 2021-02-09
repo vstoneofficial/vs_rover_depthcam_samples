@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>vs_rover_depthcam_samples</name>
+  <version>1.0.0</version>
+  <description>Sample launch files for Vstone rover Depth camera option.</description>
+
+  <maintainer email="infodesk@vstone.co.jp">Vstone</maintainer>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>realsense2_camera</build_depend>
+  <build_depend>rtabmap_ros</build_depend>
+  <build_export_depend>realsense2_camera</build_export_depend>
+  <build_export_depend>rtabmap_ros</build_export_depend>
+  <exec_depend>realsense2_camera</exec_depend>
+  <exec_depend>rtabmap_ros</exec_depend>
+
+
+
+  <export>
+
+
+  </export>
+</package>

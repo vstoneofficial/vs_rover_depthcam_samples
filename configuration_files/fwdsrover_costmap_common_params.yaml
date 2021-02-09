@@ -1,0 +1,6 @@
+#costmap common params for 4WDSROVER
+
+# ロボットの大きさに関するパラメータ
+footprint: [[0.2, -0.2], [0.2, 0.2], [-0.2, 0.2], [-0.2, -0.2]]
+
+

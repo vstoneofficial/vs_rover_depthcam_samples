@@ -1,0 +1,55 @@
+<launch>
+  <!-- ローバータイプ: move_base実行時にそれぞれの車体に合わせた設定を読み込む-->>
+  <arg name="rover_type"        default="mega"  doc="mega / mecanum / fwds"/>
+
+  <arg name="localization"      default="false"/>
+
+  <arg name="align_depth"       default="true"/>
+  <arg name="unite_imu_method"  default="linear_interpolation"/>
+  <arg name="enable_gyro"       default="true"/>
+  <arg name="enable_accel"      default="true"/>
+
+  <!-- ローバーの旋回中心からカメラまでの座標変換の設定 -->
+  <!-- メガローバーVer2.0 or Ver2.1の場合 -->
+  <group if="$(eval rover_type=='mega')">
+    <!-- args="x y z yaw pitch roll" 取付位置に合わせて変更してください -->
+    <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.1 0 0.24 0 0 0 base_link camera_link 10" />
+  </group>
+  <!-- メカナムローバーVer2.0 or Ver2.1の場合 -->>
+  <group if="$(eval rover_type=='mecanum')">
+    <!-- args="x y z yaw pitch roll" 取付位置に合わせて変更してください-->
+    <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.21 0 0.225 0 0 0 base_link camera_link 10" />
+  </group>
+  <!-- 4WDSローバーVer2.0 or Ver2.1の場合 -->>
+  <group if="$(eval rover_type=='fwds')">
+    <!-- args="x y z yaw pitch roll" 取付位置に合わせて変更してください-->
+    <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.24 0 0.26 0 0 0 base_link camera_link 10" />
+  </group>
+
+  <!-- オドメトリの配信ノード -->
+  <!--<node pkg="mecanumrover_samples" type="pub_odom" name="pub_odom" />-->
+
+  <!-- realsenseドライバノード -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="align_depth" value="$(arg align_depth)"/>
+    <arg name="unite_imu_method" value="$(arg unite_imu_method)"/>
+    <arg name="enable_gyro" value="$(arg enable_gyro)"/>
+    <arg name="enable_accel" value="$(arg enable_accel)"/>
+  </include>
+
+  <!-- IMUフィルターノード -->
+  <node name="imu_filter" pkg="imu_filter_madgwick" type="imu_filter_node" >
+    <param name="use_mag" value="false" />
+    <param name="publish_tf" value="false" />
+    <param name="world_frame" value="enu" />
+    <remap from="/imu/data_raw" to="/camera/imu" />
+    <remap from="/imu/data" to="/rtabmap/imu" />
+  </node>
+
+  <!-- rtabmap -->
+  <include file="$(find vs_rover_depthcam_samples)/launch/rtabmap.launch">
+    <arg name="rover_type"  value="$(arg rover_type)"/>
+    <arg name="localization" value="$(arg localization)"/>
+  </include>
+
+</launch>

@@ -1,0 +1,11 @@
+<launch>
+  <arg name="filters"     default="pointcloud"/>
+
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <arg name="filters" value="$(arg filters)"/>
+  </include>
+
+  <!-- rviz(視覚化ツール) -->
+  <node pkg="rviz" type="rviz" args="-d '$(find vs_rover_depthcam_samples)/rviz/pointcloud_only.rviz'" name="visualizer" respawn="true" />
+
+</launch>

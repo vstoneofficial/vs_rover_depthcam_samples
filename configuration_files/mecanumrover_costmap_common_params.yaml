@@ -1,0 +1,6 @@
+#costmap common params for MECANUMROVER
+
+# ロボットの大きさに関するパラメータ
+footprint: [[0.2, -0.15], [0.2, 0.15], [-0.2, 0.15], [-0.2, -0.15]]
+
+

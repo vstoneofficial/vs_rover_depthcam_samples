@@ -1,0 +1,18 @@
+<launch>
+  <arg name="rover_samples" default="megarover_samples"/>
+  <arg name="rover_pkg_path" default="$(find vs_rover_depthcam_samples)"/>
+
+  <arg if="$(eval rover_samples=='megarover_samples')" name="rover_type" default="megarover"/>
+  <arg if="$(eval rover_samples=='mecanumrover_samples')" name="rover_type" default="mecanumrover"/>
+  <arg if="$(eval rover_samples=='fwdsrover_samples')" name="rover_type" default="fwdsrover"/>
+
+  <!--- 経路計画，指令値生成ノード　move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" args="/cmd_vel:=/rover_twist">
+    <rosparam file="$(arg rover_pkg_path)/configuration_files/$(arg rover_type)_costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(arg rover_pkg_path)/configuration_files/$(arg rover_type)_costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(arg rover_pkg_path)/configuration_files/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(arg rover_pkg_path)/configuration_files/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(arg rover_pkg_path)/configuration_files/$(arg rover_type)_dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(arg rover_pkg_path)/configuration_files/move_base_params.yaml" command="load" />
+  </node>
+</launch>
