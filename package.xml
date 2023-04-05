@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>vs_rover_depthcam_samples</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>Sample launch files for Vstone rover Depth camera option.</description>
 
   <maintainer email="infodesk@vstone.co.jp">Vstone</maintainer>

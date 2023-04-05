@@ -26,9 +26,6 @@
     <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.24 0 0.26 0 0 0 base_link camera_link 10" />
   </group>
 
-  <!-- オドメトリの配信ノード -->
-  <!--<node pkg="mecanumrover_samples" type="pub_odom" name="pub_odom" />-->
-
   <!-- realsenseドライバノード -->
   <include file="$(find realsense2_camera)/launch/rs_camera.launch">
     <arg name="align_depth" value="$(arg align_depth)"/>

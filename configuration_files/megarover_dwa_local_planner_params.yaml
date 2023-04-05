@@ -2,23 +2,23 @@
 # 各パラメータについては http://wiki.ros.org/dwa_local_planner?distro=kinetic を参照してください。
 
 DWAPlannerROS:
-  acc_lim_x: 1.0
+  acc_lim_x: 1.5
   acc_lim_y: 0.0
-  acc_lim_th: 0.3
-  max_vel_trans: 0.30
+  acc_lim_th: 0.5
+  max_vel_trans: 0.60
   min_vel_trans: 0.00
-  max_vel_x: 0.5
+  max_vel_x: 0.6
   min_vel_x: 0.0
   max_vel_y: 0.0
   min_vel_y: 0.0
-  max_vel_theta: 0.5
+  max_vel_theta: 0.8
   min_vel_theta: 0.0
 
   yaw_goal_tolerance: 0.3
   xy_goal_tolerance: 0.2
   latch_xy_goal_tolerance: true
 
-  sim_time: 2.0
+  sim_time: 4.0
   sim_granularity: 0.05
   vx_samples: 10
   vtheta_samples: 20

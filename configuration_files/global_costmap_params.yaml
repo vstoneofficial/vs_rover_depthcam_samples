@@ -4,6 +4,8 @@ global_costmap:
     - {name: static_layer, type: "costmap_2d::StaticLayer"}
   global_frame: map
   robot_base_frame: base_link
+  
+  transform_tolerance: 10.0
 
   update_frequency: 2.0
   publish_frequency: 2.0
