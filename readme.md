@@ -84,7 +84,7 @@ rosdep install -i --from-path src --rosdistro humble --skip-keys=librealsense2 -
 4．パッケージのビルドを実行する
 
 ```bash
-colcon build
+colcon build --symlink-install
 ```
 
 ---
@@ -122,7 +122,7 @@ cd ~/ros2_ws/src
 2．vs_rover_depthcam_samplesパッケージをダウンロードする
 
 ```bash
-git clone https://github.com/vstoneofficial/vs_rover_depthcam_samples.git
+git clone -b humble https://github.com/vstoneofficial/vs_rover_depthcam_samples.git
 ```
 
 3．ROS2ワークスペースのrootディレクトリに移動する
